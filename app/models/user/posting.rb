@@ -14,7 +14,7 @@ class User
   end
 
   def reply(topic, body)
-    returning topic.posts.build(:body => body) do |post|
+    topic.posts.build(:body => body).tap do |post|
       post.site  = topic.site
       post.forum = topic.forum
       post.user  = self

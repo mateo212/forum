@@ -133,7 +133,7 @@ describe User do
 
 protected
   def create_user(options = {})
-    returning User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)) do |u|
+    User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'monkey', :password_confirmation => 'monkey' }.merge(options)).tap do |u|
       u.site_id = options.key?(:site_id) ? options[:site_id] : sites(:default).id
       u.save
     end

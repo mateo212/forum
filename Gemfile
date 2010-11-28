@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem "rails", "2.3.3"
+gem "rails", "2.3.10"
 gem 'ruby-openid', '>= 2.0.4', :require => "openid"
 gem 'mysql'
 gem 'sqlite3-ruby', :require => "sqlite3"
