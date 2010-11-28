@@ -9,6 +9,11 @@ gem 'will_paginate'
 gem 'bluecloth'
 gem 'RedCloth', :require => "redcloth"
 
+gem 'acts_as_list'
+gem 'acts_as_state_machine'
+gem 'permalink_fu'
+
+
 group :development do
 end
 
