@@ -58,7 +58,7 @@
 </h1>
 
 <p class="subtitle">
-  <%= feed_icon_tag @topic.title, formatted_forum_topic_posts_path(@forum, @topic, 'atom') %>
+  <%= feed_icon_tag @topic.title, forum_topic_posts_path(@forum, @topic, :format => 'atom') %>
   <%= I18n.t 'txt.count_posts', :count => @topic.posts.size, :num => number_with_delimiter(@topic.posts.size) %>,
   <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
