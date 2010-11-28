@@ -13,5 +13,5 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '1.2.4', :require => 'spec/rails'
+  gem 'rspec-rails', "~> 1.3.0", :require => 'spec/rails'
 end
