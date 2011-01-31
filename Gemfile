@@ -16,7 +16,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'highline'
   gem 'sqlite3-ruby', :require => "sqlite3"
-  gem 'ruby-debug'
+#  gem 'ruby-debug' # XXX linecache gem currently doesn't work in ruby 1.9
   gem 'autotest'
   gem 'rails3-generators'
 end
