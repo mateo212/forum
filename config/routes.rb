@@ -4,7 +4,7 @@ AlteredBeast::Application.routes.draw do
   resources :sites, :moderatorships, :monitorship
 
   resources :forums do
-    resources :topics do |topic|
+    resources :topics do
       resources :posts
       resource :monitorship
     end
