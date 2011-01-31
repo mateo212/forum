@@ -41,7 +41,7 @@
         <%= I18n.t 'txt.count_topics', :count => forum.topics.size, :num => number_with_delimiter(forum.topics.size) %>,
         <%= I18n.t 'txt.count_posts', :count => forum.posts.size, :num => number_with_delimiter(forum.posts.size) %>
       </div>
-      <p class="desc"><%= forum.description_html %></p>
+      <p class="desc"><%= forum.description_html.html_safe %></p>
     </td>
     <td class="c3">
       <%= link_to I18n.t('txt.edit', :default => 'Edit'), edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin? %>
