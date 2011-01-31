@@ -7,8 +7,7 @@
 <h1 id="new_topic"><%= I18n.t 'txt.new_topic', :default => 'New topic' %></h1>
 <p class="subtitle"><%= I18n.t 'txt.by_user', :default => 'by {{user}}', :user => current_user.display_name %></p>
 
-
-<%= error_messages_for :topic %>
+<%= render '/shared/error_messages', :target => @topic %>
 <%= form_for :topic,
      :url  => forum_topics_path(@forum) do |f| -%>
 <%= render :partial => "form", :object => f %>

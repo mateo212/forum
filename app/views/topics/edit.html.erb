@@ -1,6 +1,6 @@
 <h1><%= I18n.t 'txt.views_topics.edit', :default => 'Edit Topic' %></h1>
 
-<%= error_messages_for :topic %>
+<%= render '/shared/error_messages', :target => @topic %>
 <%= form_for :topic,
      :url  => forum_topic_path(@forum, @topic),
      :html => { :method => :put } do |f| -%>
