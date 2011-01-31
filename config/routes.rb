@@ -1,38 +1,41 @@
-ActionController::Routing::Routes.draw do |map|
-  map.open_id_complete '/session', 
-    :controller => "sessions", :action => "create",
-    :requirements => { :method => :get }
+AlteredBeast::Application.routes.draw do
+  get '/session' => "sessions#create",
+    :as => 'open_id_complete'
 
-  map.resources :sites, :moderatorships, :monitorship
-  
+  resources :sites, :moderatorships, :monitorship
 
-  map.resources :forums, :has_many => :posts do |forum|
-    forum.resources :topics do |topic|
-      topic.resources :posts
-      topic.resource :monitorship
+  resources :forums, :has_many => :posts do
+    resources :topics do |topic|
+      resources :posts
+      resource :monitorship
     end
-    forum.resources :posts
-  end
-  
-  map.resources :posts, :collection => {:search => :get}
-  map.resources :users, :member => { :suspend   => :put,
-                                     :settings  => :get,
-                                     :make_admin => :put,
-                                     :unsuspend => :put,
-                                     :purge     => :delete },
-                        :has_many => [:posts]
-
-  map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate', :activation_code => nil
-  map.signup   '/signup',                    :controller => 'users',    :action => 'new'
-  map.login    '/login',                     :controller => 'sessions', :action => 'new'
-  map.logout   '/logout',                    :controller => 'sessions', :action => 'destroy'
-  map.settings '/settings',                  :controller => 'users',    :action => 'settings'
-  map.resource  :session
-  
-  map.with_options :controller => 'posts', :action => 'monitored' do |map|
-    map.formatted_monitored_posts 'users/:user_id/monitored.:format'
-    map.monitored_posts           'users/:user_id/monitored'
+    resources :posts
   end
 
-  map.root :controller => 'forums', :action => 'index'
+  resources :posts do
+    get :search, :on => :collection
+  end
+  resources :users do
+    member do
+      put :suspend, :make_admin, :unsuspend
+      get :settings
+      delete :purge
+    end
+    resources :posts, :only => [:index]
+  end
+
+  match '/activate/:activation_code' => 'users#activate', :activation_code => nil, :as => 'activate'
+  match '/signup' => 'users#new', :as => 'signup'
+  match '/settings' => 'users#settings', :as => 'settings'
+  match '/login' => 'sessions#new', :as => 'login'
+  match '/logout' => 'sessions#destroy', :as => 'logout'
+
+  resource  :session
+
+  # map.with_options :controller => 'posts', :action => 'monitored' do |map|
+  #   map.formatted_monitored_posts 'users/:user_id/monitored.:format'
+  #   map.monitored_posts           'users/:user_id/monitored'
+  # end
+
+  root :to => 'forums#index'
 end
