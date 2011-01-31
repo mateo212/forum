@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, :unless => lambda {User.scoped.blank?}
 
   def index
     @sites = Site.paginate(:all, :page => current_page, :order => 'host ASC')
