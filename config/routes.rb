@@ -21,8 +21,11 @@ AlteredBeast::Application.routes.draw do
       get :settings
       delete :purge
     end
-    resources :posts, :only => [:index]
+    resources :posts, :only => [:index] do
+#      get :monitored, :on => :collection, :shallow => true
+    end
   end
+  match '/users/:user_id/monitored(.:format)' => 'posts#monitored', :as => 'monitored_posts'
 
   match '/activate/:activation_code' => 'users#activate', :activation_code => nil, :as => 'activate'
   match '/signup' => 'users#new', :as => 'signup'
@@ -31,11 +34,6 @@ AlteredBeast::Application.routes.draw do
   match '/logout' => 'sessions#destroy', :as => 'logout'
 
   resource  :session
-
-  # map.with_options :controller => 'posts', :action => 'monitored' do |map|
-  #   map.formatted_monitored_posts 'users/:user_id/monitored.:format'
-  #   map.monitored_posts           'users/:user_id/monitored'
-  # end
 
   root :to => 'forums#index'
 end
