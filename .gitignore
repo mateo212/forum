@@ -1,7 +1,7 @@
 *~
 .DS_Store
-tmp
-log
+tmp/**/*
+log/*.log
 config/database.yml
 vendor/rails
 db/*.sqlite
