@@ -1,10 +1,8 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem "rails", "2.3.10"
+gem "rails", "3.0.3"
 gem 'ruby-openid', '>= 2.0.4', :require => "openid"
-gem 'mysql'
-gem 'sqlite3-ruby', :require => "sqlite3"
 gem 'will_paginate'
 gem 'bluecloth'
 gem 'RedCloth', :require => "redcloth"
@@ -15,8 +13,15 @@ gem 'permalink_fu'
 
 
 group :development do
+  gem 'sqlite3-ruby', :require => "sqlite3"
 end
 
 group :test do
-  gem 'rspec-rails', "~> 1.3.0", :require => 'spec/rails'
+  gem 'rspec-rails'
+  gem 'autotest'
+  gem 'rails3-generators'
+end
+
+group :production do
+  gem 'mysql2'
 end
