@@ -3,7 +3,7 @@
 <% content_for :right do -%>
 <% if admin? %>
 <% if @user.active? && !@user.suspended? %>
-  <% form_for @user.moderatorships.build do |f| -%>
+  <%= form_for @user.moderatorships.build do |f| -%>
     <h6><%= I18n.t 'txt.admin.admin_and_moderation', :default => 'Admin &amp; Moderation' %></h6>
 
     <% unless @user.forums.empty? -%>

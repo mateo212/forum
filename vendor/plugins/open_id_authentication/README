@@ -73,7 +73,7 @@ config/routes.rb
 
 app/views/sessions/new.erb
 
-  <% form_tag(session_url) do %>
+  <%= form_tag(session_url) do %>
     <p>
       <label for="name">Username:</label>
       <%= text_field_tag "name" %>
