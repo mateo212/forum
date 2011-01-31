@@ -12,14 +12,11 @@ gem 'acts_as_list'
 gem 'acts_as_state_machine'
 gem 'permalink_fu'
 
-group :development do
+group :development, :test do
+  gem 'rspec-rails'
   gem 'highline'
   gem 'sqlite3-ruby', :require => "sqlite3"
   gem 'ruby-debug'
-end
-
-group :test do
-  gem 'rspec-rails'
   gem 'autotest'
   gem 'rails3-generators'
 end
