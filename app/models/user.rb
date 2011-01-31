@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :moderatorships, :dependent => :delete_all
   has_many :forums, :through => :moderatorships, :source => :forum do
     def moderatable
-      find :all, :select => "#{Forum.table_name}.*, #{Moderatorship.table_name}.id as moderatorship_id"
+      all :select => "#{Forum.table_name}.*, #{Moderatorship.table_name}.id as moderatorship_id"
     end
   end
   
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   attr_readonly :posts_count, :last_seen_at
 
-  named_scope :named_like, lambda {|name|
+  scope :named_like, lambda {|name|
     { :conditions => ["users.display_name like ? or users.login like ?", 
                         "#{name}%", "#{name}%"] }}
 
