@@ -1,6 +1,6 @@
 namespace :app do
   task :bootstrap => :setup do
-    Debugger.start
+    Debugger.start if Kernel.const_defined?(:Debugger)
     say "Bootstrapping #{@app_name}..."
     
     puts
@@ -52,7 +52,7 @@ namespace :app do
           end
         end
         require 'erb'
-        erb = ERB.new(IO.read(File.join(File.dirname(__FILE__), '..', 'database.erb')), nil, '<>')
+        erb = ERB.new(IO.read('config/app_bootstrap-database-template.erb'), nil, '<>')
         File.open File.expand_path(db_config), 'w' do |f|
           f.write erb.result(options.get_binding)
         end
@@ -102,16 +102,12 @@ namespace :app do
     puts
     say "#{@app_name} is ready to roll."
     say "Okay, thanks for bootstrapping!  I know I felt some chemistry here, did you?"
-    say "Now, start the application with 'script/server' and get to work!"
+    say "Now, start the application with 'rails server' and get to work!"
     Rake::Task["db:test:clone"].invoke
   end
 
   task :setup do
-    require 'rubygems'
-    gem 'highline'
-    gem 'ruby-debug'
     require 'ostruct'
-    require 'ruby-debug'
     require 'highline'
     require 'forwardable'
     @terminal = HighLine.new
