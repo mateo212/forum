@@ -35,7 +35,7 @@
   page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
   if page and page!=1 %>
   <small style="color:#ccc">
-  (<%= link_to I18n.t('txt.page_nr', :default => 'page {{nr}}'), forum_path(:id => @topic.forum, :page => page) %>)
+  (<%= link_to I18n.t('txt.page_nr', :default => 'page %{nr}'), forum_path(:id => @topic.forum, :page => page) %>)
   </small>
   <% end %>
   <span class="arrow">&rarr;</span>
@@ -82,7 +82,7 @@
     <div class="date">
       <a href="#<%= dom_id post %>" rel="bookmark">
       <abbr class="updated" title="<%= post.created_at.xmlschema %>">
-      <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted {{when}} ago" %>
+      <%= I18n.t 'txt.post_age', :when => time_ago_in_words(post.created_at), :default => "posted %{when} ago" %>
       </abbr>
       </a>
     </div>
