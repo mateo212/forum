@@ -1,4 +1,4 @@
-require 'md5'
+require 'digest/md5'
 module ApplicationHelper
   def feed_icon_tag(title, url)
     (@feed_icons ||= []) << { :url => url, :title => title }
