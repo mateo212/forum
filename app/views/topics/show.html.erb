@@ -119,7 +119,7 @@
     <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in? && @posts.first == post %>
 
       <% if post.user.active? %>
-        <%= post.body_html %>
+        <%= post.body_html.html_safe %>
       <% else %>
         <p>(<% I18n.t 'txt.suspended_user_post', :default => 'This post has been removed' %>)</p>
       <% end %>
