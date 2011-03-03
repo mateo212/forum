@@ -1,4 +1,4 @@
-require 'md5'
+require 'digest/md5'
 module ApplicationHelper
   def feed_icon_tag(title, url)
     (@feed_icons ||= []) << { :url => url, :title => title }
@@ -21,8 +21,8 @@ module ApplicationHelper
 
   def search_posts_title
     (params[:q].blank? ? I18n.t('txt.recent_posts', :default => 'Recent Posts') : I18n.t('txt.searching_for', :default => 'Searching for') + " '#{h params[:q]}'").tap do |title|
-      title << " " + I18n.t('txt.by_user', :default => 'by {{user}}', :user => h(@user.display_name)) if @user
-      title << " " + I18n.t('txt.in_forum', :default => 'in {{forum}}', :forum => h(@forum.name)) if @forum
+      title << " " + I18n.t('txt.by_user', :default => 'by %{user}', :user => h(@user.display_name)) if @user
+      title << " " + I18n.t('txt.in_forum', :default => 'in %{forum}', :forum => h(@forum.name)) if @forum
     end
   end
 
@@ -36,11 +36,11 @@ module ApplicationHelper
   end
 
   def ajax_spinner_for(id, spinner="spinner.gif")
-    "<img src='/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> "
+    "<img src='/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> ".html_safe
   end
 
   def avatar_for(user, size=32)
-    image_tag "http://www.gravatar.com/avatar.php?gravatar_id=#{MD5.md5(user.email)}&rating=PG&size=#{size}", :size => "#{size}x#{size}", :class => 'photo'
+    image_tag "http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.hexdigest(user.email)}&rating=PG&size=#{size}", :size => "#{size}x#{size}", :class => 'photo'
   end
 
   def search_path(atom = false)

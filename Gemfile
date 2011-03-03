@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem "rails", "3.0.3"
+gem "rails", "3.0.4"
 gem 'ruby-openid', '>= 2.0.4', :require => "openid"
 gem 'rack-openid'
 gem 'will_paginate'
