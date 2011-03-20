@@ -1,10 +1,10 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem "rails", "3.0.4"
+gem "rails", "3.0.5"
 gem 'ruby-openid', '>= 2.0.4', :require => "openid"
 gem 'rack-openid'
-gem 'will_paginate'
+gem 'will_paginate', :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
 gem 'bluecloth'
 gem 'RedCloth', :require => "redcloth"
 
