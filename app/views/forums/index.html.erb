@@ -11,7 +11,7 @@
 
 <h1 style="margin-top:0;"><%= I18n.t 'txt.forums', :default => 'Forums' %></h1>
 <p class="subtitle">
-<%= feed_icon_tag I18n.t('txt.recent_posts', :default => "Recent Posts"), posts_path(:format => 'atom') %>
+<%= feed_icon_tag I18n.t('txt.recent_posts', :default => "Najnowsze Posty"), posts_path(:format => 'atom') %>
 <%= I18n.t 'txt.count_topics', :count => current_site.topics.size, :num => number_with_delimiter(current_site.topics.size) %>,
 <%= I18n.t 'txt.count_posts',  :count => current_site.posts.size,  :num => number_with_delimiter(current_site.posts.size) %>
 </p>
@@ -19,7 +19,7 @@
 <table border="0" cellspacing="0" cellpadding="0" class="wide forums">
   <tr>
     <th class="la" width="70%" colspan="3"><%= I18n.t 'txt.forum', :default => 'Forum' %></th>
-    <th class="la" width="30%" colspan="1"><%= I18n.t 'txt.latest_post', :default => 'Last Post' %></th>
+    <th class="la" width="30%" colspan="1"><%= I18n.t 'txt.latest_post', :default => 'Ostatni Post' %></th>
   </tr>
 <% for forum in @forums do %>  
   <tr class="forum" id="forum_<%= forum.id %>_row">
@@ -40,7 +40,7 @@
       <p class="desc"><%= forum.description_html.html_safe %></p>
     </td>
     <td class="c3">
-      <%= link_to I18n.t('txt.edit', :default => 'Edit'), edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin? %>
+      <%= link_to I18n.t('txt.edit', :default => 'Edytuj'), edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin? %>
     </td>
 
     <td class="inv lp">
@@ -63,7 +63,7 @@
 <div class="stats">
 <div class="users">
 <% unless online_users.empty? %>
-<%= 'Users online:'[:users_online] %> <%= online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " %><br />
+<%= 'Użytkownicy online:'[:users_online] %> <%= online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " %><br />
 <% end %>
 </div>
 </div>
