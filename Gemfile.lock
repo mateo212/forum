@@ -49,8 +49,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mysql2 (0.2.6)
     permalink_fu (1.0.0)
+    pg (0.9.0)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.13)
@@ -109,8 +109,8 @@ DEPENDENCIES
   autotest
   bluecloth
   highline
-  mysql2
   permalink_fu
+  pg (= 0.9.0)
   rack-openid
   rails (= 3.0.5)
   rails3-generators
